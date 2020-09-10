@@ -60,7 +60,7 @@ class TasksController extends Controller
     {
         $task = Task::findOrFail($id);
         
-        return view('tasks.show', ['message'=> $message,]);
+        return view('tasks.show', ['task'=> $task,]);
     }
 
     /**
@@ -73,7 +73,7 @@ class TasksController extends Controller
     {
         $task = Task::findOrFail($id);
         return view('tasks.edit',[
-            'message' => $message,
+            'task' => $task,
         ]);
     }
 
@@ -88,8 +88,8 @@ class TasksController extends Controller
     {
         $task = Task::findOrFail($id);
         $task->content = $request->content;
-        $message->save();
-        redirect('/');
+        $task->save();
+        return redirect('/');
     }
 
     /**
